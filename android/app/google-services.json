@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "819511724407",
+    "firebase_url": "https://iot-fish-feeder-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "iot-fish-feeder-system",
+    "storage_bucket": "iot-fish-feeder-system.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819511724407:android:402866f0fa08ab309e7972",
+        "android_client_info": {
+          "package_name": "com.example.fish_feeder_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-ytpRRu45_9fcFK0FraqnixAPw3ZrQlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
