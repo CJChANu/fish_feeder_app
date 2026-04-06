@@ -1,135 +1,138 @@
-# 🐟 Smart Fish Feeder App
+# 🐟 Fish_Feeder_App
 
-A Flutter-based mobile application for monitoring and controlling an ESP32-powered smart fish feeder via Firebase Realtime Database. The app provides real-time sensor data, automated feeding schedules, feeding history, and push notifications — all from your phone.
+A Flutter-based mobile application for monitoring and controlling the **Smart Fish Feeder System** through Firebase Realtime Database. This app acts as the companion mobile interface for the ESP32/Arduino-based feeder hardware.
 
----
+***
 
 ## ✨ Features
 
-- 📊 **Live Dashboard** — Real-time display of water temperature, pH level, and turbidity sensor readings
-- 🎮 **Remote Control** — Trigger feeding manually or set up automated schedules directly from the app
-- 📋 **Feeding History** — Browse logs of past feeding events with timestamps
-- 🔔 **Notifications** — Receive alerts for feeding events and abnormal sensor readings
-- 📱 **Device Picker** — Connect and manage multiple fish feeder devices
-- ⚙️ **Settings** — Customize app preferences, thresholds, and notification behavior
-- 🌐 **Connectivity Check** — Detects internet/Firebase connectivity status gracefully
+- 📊 **Live Dashboard** — Monitor water temperature, pH level, and turbidity data in real time.
+- 🎮 **Remote Feeding Control** — Trigger feeding manually from your mobile device.
+- ⏰ **Feeding Schedule Support** — Work with scheduled feeding logic provided by the connected device.
+- 📋 **Feeding History** — Review previous feeding events and recorded activity.
+- 🔔 **Notifications** — Receive alerts and feeder-related updates.
+- 📱 **Device Management** — Select and manage supported fish feeder devices.
+- ⚙️ **Settings** — Store local preferences and customize app behavior.
 
----
+***
+
+## 🔗 Related Repository
+
+This repository contains the **mobile application** for the Smart Fish Feeder project.
+
+The **hardware and firmware** side of the system is maintained separately in:
+
+- **Firmware Repository:** [CJChANu/FishFeeder](https://github.com/CJChANu/FishFeeder)
+
+Use the firmware repository for:
+- ESP32 / Arduino source code
+- Sensor integration and hardware control
+- Servo or feeder motor logic
+- Real-time device-side Firebase communication
+- Embedded setup and hardware wiring
+
+Together, **Fish_Feeder_App** and **FishFeeder** form the complete Smart Fish Feeder solution.
+
+***
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| Framework | Flutter (Dart) |
-| Backend / Database | Firebase Realtime Database |
-| State & Storage | `shared_preferences` |
-| Charts | `fl_chart` |
+|-------|------------|
+| Mobile Framework | Flutter (Dart) |
+| Backend | Firebase Realtime Database |
+| Local Storage | `shared_preferences` |
 | Connectivity | `connectivity_plus` |
-| Hardware | ESP32 microcontroller with RTC, temperature, pH & turbidity sensors |
+| Charts | `fl_chart` |
+| Formatting | `intl` |
 
----
+***
 
 ## 📁 Project Structure
 
-```
+```text
 lib/
-├── main.dart                  # App entry point, Firebase initialization
+├── main.dart
 └── src/
-    ├── app.dart               # App root widget & routing
-    ├── models/                # Data models (sensor readings, feed events, etc.)
-    ├── services/              # Firebase service layer
-    ├── storage/               # Local storage with shared_preferences
-    ├── notifications/         # Notification handling logic
+    ├── app.dart
+    ├── models/
+    ├── notifications/
+    ├── services/
+    ├── storage/
     └── ui/
-        ├── dashboard/         # Live sensor data screen
-        ├── control/           # Manual & scheduled feeding control
-        ├── history/           # Feeding event history screen
-        ├── home/              # Home/landing screen
-        ├── device_picker/     # Device selection screen
-        ├── notifications/     # Notifications screen
-        ├── settings/          # App settings screen
-        ├── components/        # Shared UI components
-        └── widgets/           # Reusable custom widgets
+        ├── components/
+        ├── control/
+        ├── dashboard/
+        ├── device_picker/
+        ├── history/
+        ├── home/
+        ├── notifications/
+        ├── settings/
+        └── widgets/
 ```
 
----
+***
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- [Flutter SDK](https://flutter.dev/docs/get-started/install) `^3.10.7`
-- A configured [Firebase](https://firebase.google.com/) project with Realtime Database enabled
-- An ESP32 device running the fish feeder firmware connected to the same Firebase project
+- Flutter SDK
+- A configured Firebase project
+- Android Studio, VS Code, or another Flutter-compatible IDE
+- The matching firmware from the [FishFeeder](https://github.com/CJChANu/FishFeeder) repository
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository
    ```bash
-   git clone https://github.com/CJChANu/fish_feeder_app.git
-   cd fish_feeder_app
+   git clone https://github.com/CJChANu/Fish_Feeder_App.git
+   cd Fish_Feeder_App
    ```
 
-2. **Install dependencies**
+2. Install dependencies
    ```bash
    flutter pub get
    ```
 
-3. **Configure Firebase**
-   - Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com)
-   - Enable **Realtime Database**
-   - Add your Android/iOS app to the Firebase project
-   - Download `google-services.json` (Android) and/or `GoogleService-Info.plist` (iOS) and place them in the respective platform directories:
-     - Android: `android/app/google-services.json`
-     - iOS: `ios/Runner/GoogleService-Info.plist`
+3. Configure Firebase
+   - Add `google-services.json` to `android/app/`
+   - Add `GoogleService-Info.plist` to `ios/Runner/`
+   - Make sure your Firebase Realtime Database is enabled and matches the feeder firmware configuration
 
-4. **Run the app**
+4. Run the app
    ```bash
    flutter run
    ```
 
----
+***
 
-## 📦 Dependencies
+## 📦 Main Dependencies
 
 | Package | Purpose |
 |---------|---------|
-| `firebase_core` | Firebase initialization |
-| `firebase_database` | Realtime Database reads/writes |
-| `shared_preferences` | Local persistent storage |
-| `connectivity_plus` | Network connectivity detection |
-| `fl_chart` | Sensor data charts and graphs |
-| `intl` | Date/time formatting |
-| `cupertino_icons` | iOS-style icon set |
+| `firebase_core` | Initializes Firebase |
+| `firebase_database` | Connects to Realtime Database |
+| `shared_preferences` | Stores local settings |
+| `connectivity_plus` | Detects connectivity state |
+| `fl_chart` | Displays charts and sensor data visually |
+| `intl` | Formats date and time values |
 
----
-
-## 🔧 Hardware Requirements
-
-This app is designed to work alongside an **ESP32** smart fish feeder device equipped with:
-- 🌡️ **Temperature sensor** — Monitors water temperature
-- 🧪 **pH sensor** — Measures water acidity/alkalinity
-- 💧 **Turbidity sensor** — Tracks water clarity
-- ⏰ **RTC module** — Keeps accurate time for scheduled feedings
-- 🔌 **Servo/motor** — Dispenses fish food
-
-The ESP32 firmware should write sensor data and read feeding commands from the same Firebase Realtime Database that this app connects to.
-
----
+***
 
 ## 📱 Platform Support
 
-| Platform | Supported |
-|----------|-----------|
+| Platform | Status |
+|----------|--------|
 | Android | ✅ |
 | iOS | ✅ |
 | Web | ✅ |
-| Linux | ✅ |
-| macOS | ✅ |
 | Windows | ✅ |
+| macOS | ✅ |
+| Linux | ✅ |
 
----
+***
 
 ## 📄 License
 
-This project is for educational and personal use. All rights reserved © CJChANu.
+This project uses the custom license included in this repository. See the `LICENSE` file for full usage terms.
